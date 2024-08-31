@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock</title>
+    <link rel="stylesheet" href="task.css">
+</head>
+<body onload="initClock()">
+
+    <div id="div1">
+        <header class="head1">Digital Clock</header>
+        <h2 class="pass1">Html-Css And JavaScript</h2>
+    </div>
+    <div id="clock" class="clock"></div>
+
+    <div class="datetime">
+        <div class="date">
+            <span id="dayName" style="color:#fff;">Day</span>
+            <span id="month" style="color: #fff;">Month</span>
+            <span id="daynum" style="color: #fff;">00</span>
+            <span id="year" style="color: #fff;">Year</span>
+        </div>
+
+        <div class="time">
+            <span id="hours" style="color: rgb(253, 59, 11);">00</span>:
+            <span id="minutes" style="color: rgb(190, 54, 54);">00</span>:
+            <span id="seconds" style="color: rgb(123, 228, 18);">00</span>
+            <span id="period" style="color: rgb(22, 3, 3);">AM</span>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+    const now = new Date();
+    
+    const dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+    const dayName = dayNames[now.getDay()];
+    const month = monthNames[now.getMonth()];
+    const daynum = String(now.getDate()).padStart(2, '0');
+    const year = now.getFullYear();
+
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const seconds = String(now.getSeconds()).padStart(2, '0');
+    const period = hours >= 12 ? "PM" : "AM";
+    
+    hours = hours % 12 || 12; // Convert to 12-hour format and replace 0 with 12
+    hours = String(hours).padStart(2, '0');
+    
+    // Update the HTML content
+    document.getElementById("dayName").textContent = dayName;
+    document.getElementById("month").textContent = month;
+    document.getElementById("daynum").textContent = daynum;
+    document.getElementById("year").textContent = year;
+    document.getElementById("hours").textContent = hours;
+    document.getElementById("minutes").textContent = minutes;
+    document.getElementById("seconds").textContent = seconds;
+    document.getElementById("period").textContent = period;
+}
+
+function initClock() {
+    updateClock();
+    setInterval(updateClock, 1000); // Update the clock every second
+}
+    </script
+    </script>
+</body>
+</html>
